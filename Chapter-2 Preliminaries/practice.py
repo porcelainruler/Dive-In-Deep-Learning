@@ -100,6 +100,34 @@ print('Setted 1st 2 row to 12:', a)
 
 ## Saving Memory
 
+# For example, if we
+# write Y = X + Y, we will dereference the tensor that Y used to point to and instead point Y at
+# the newly allocated memory.
+save_id = id(Y)
+Y = Y + X
+new_id = id(Y)
+print('Is both Y same:', save_id == new_id)
+
+# Handling Memory Issue
+Z = np.zeros_like(Y)
+print('Initial Id:', id(Z))
+Z[:] = X + Y
+print('Id After Op:', id(Z))
+# Other Method
+
+save_id = id(X)
+X += Y
+print('Is Id Same?', id(X) == save_id)
+
+
+
+## Type Conversions
+
+print(type(Y))
+a = np.array([3.2])
+print(a, a.item(), int(a), float(a))
+
+
 
 
 
